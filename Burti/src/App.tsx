@@ -21,6 +21,11 @@ function App() {
     return sVarieties.reduce((a, b) => a + `.${b.option.code}`, item.code);
   };
 
+  const backButton = () => {
+    setItem(null);
+    setsVarieties([]);
+  };
+
   return (
     <main className="w-full h-full justify-center items-center gap-10 flex text-center flex-col">
       <div className="container m-auto bg-slate-100 rounded-md p-10 flex flex-col items-center mt-10 text-stone-800 relative">
@@ -29,10 +34,7 @@ function App() {
             {items.map((e) => (
               <ListButton
                 key={e.code}
-                onClick={() => {
-                  setItem(e);
-                  setsVarieties([]);
-                }}
+                onClick={() => setItem(structuredClone(e))}
               >
                 {e.description}
               </ListButton>
@@ -41,7 +43,7 @@ function App() {
         ) : (
           <>
             <button
-              onClick={() => setItem(null)}
+              onClick={backButton}
               className="absolute top-5 left-20 font-medium rounded-xl p-1 px-2 bg-slate-400 text-neutral-100 "
             >{`< Back`}</button>
             <div className="flex flex-col gap-4">
@@ -50,15 +52,10 @@ function App() {
               </h2>
               {item.varieties.length > 0 ? (
                 <ul className="flex flex-col gap-2">
-                  {item.varieties.map((e) => {
-                    return (
-                      <VarietiesSelector
-                        key={e}
-                        varietyCode={item.varieties[0]}
-                        onClick={setsVariety}
-                      />
-                    );
-                  })}
+                  <VarietiesSelector
+                    varietyCode={item.varieties[0]}
+                    onClick={setsVariety}
+                  />
                 </ul>
               ) : (
                 <div>{createItemCode()}</div>
@@ -66,7 +63,6 @@ function App() {
             </div>
           </>
         )}
-        <button>Dump Data</button>
       </div>
     </main>
   );
