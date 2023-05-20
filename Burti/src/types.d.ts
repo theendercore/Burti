@@ -15,6 +15,11 @@ type Variety = {
   options: Option[];
 };
 
+type SelectedVariety = {
+  code: string;
+  option: Option;
+};
+
 type Option = {
   code: string;
   description: string;
