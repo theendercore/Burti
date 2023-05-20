@@ -17,7 +17,7 @@ type Variety = {
 
 type SelectedVariety = {
   code: string;
-  option: Option;
+  option: string;
 };
 
 type Option = {
