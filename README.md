@@ -1,4 +1,6 @@
-# How to run the project:
+# See the project in action : https://burti.vercel.app/
+
+# How to run the project on your device :
 - Download the repo
 - Run :
 
